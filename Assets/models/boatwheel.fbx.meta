@@ -14,6 +14,17 @@ ModelImporter:
     100016: pCylinder1
     100018: pCylinder2
     100020: Handle_Curve
+    100022: nurbsCircle2
+    100024: revolvedSurface1
+    100026: revolvedSurface2
+    100028: revolvedSurface3
+    100030: revolvedSurface4
+    100032: revolvedSurface5
+    100034: pCylinder3
+    100036: pCylinder4
+    100038: pCylinder5
+    100040: transform1
+    100042: transform2
     400000: //RootNode
     400002: handle
     400004: handle1
@@ -25,6 +36,17 @@ ModelImporter:
     400016: pCylinder1
     400018: pCylinder2
     400020: Handle_Curve
+    400022: nurbsCircle2
+    400024: revolvedSurface1
+    400026: revolvedSurface2
+    400028: revolvedSurface3
+    400030: revolvedSurface4
+    400032: revolvedSurface5
+    400034: pCylinder3
+    400036: pCylinder4
+    400038: pCylinder5
+    400040: transform1
+    400042: transform2
     2100000: lambert1
     2300000: handle
     2300002: handle1
@@ -34,6 +56,12 @@ ModelImporter:
     2300010: pCube1
     2300012: pCylinder1
     2300014: pCylinder2
+    2300016: revolvedSurface1
+    2300018: revolvedSurface2
+    2300020: revolvedSurface3
+    2300022: revolvedSurface4
+    2300024: revolvedSurface5
+    2300026: pCylinder5
     3300000: handle
     3300002: handle1
     3300004: handle2
@@ -42,6 +70,12 @@ ModelImporter:
     3300010: pCube1
     3300012: pCylinder1
     3300014: pCylinder2
+    3300016: revolvedSurface1
+    3300018: revolvedSurface2
+    3300020: revolvedSurface3
+    3300022: revolvedSurface4
+    3300024: revolvedSurface5
+    3300026: pCylinder5
     4300000: handle
     4300002: handle1
     4300004: handle2
@@ -50,9 +84,16 @@ ModelImporter:
     4300010: pCylinder1
     4300012: pCylinder2
     4300014: pCube1
+    4300016: revolvedSurface1
+    4300018: revolvedSurface2
+    4300020: revolvedSurface3
+    4300022: revolvedSurface4
+    4300024: revolvedSurface5
+    4300026: pCylinder5
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -82,13 +123,13 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 2
     addColliders: 0
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -112,7 +153,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

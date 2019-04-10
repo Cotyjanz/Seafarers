@@ -1,0 +1,855 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pspDebu",
+				"pspDebugScreenClear"
+			],
+			[
+				"b",
+				"branch_on_equal\tif ($s == $t) go to PC+4+4*C"
+			],
+			[
+				"bon",
+				"branch_on_not_equal\tif ($s != $t) go to PC+4+4*C"
+			],
+			[
+				"bl",
+				"branch_if_less_than\tslt $at,$rs,$rt; bne $at,$zero,Label"
+			],
+			[
+				"lw",
+				"load_word\t$t = Memory[$s + C]"
+			],
+			[
+				"beq",
+				"branch_if_equal_to_zero\tbeq $rs,$zero,Label"
+			],
+			[
+				"S",
+				"S"
+			],
+			[
+				"la",
+				"load_address\tlui $rd,LabelAddr[31:16]; ori $rd,$rd,LabelAddr[15:0]"
+			],
+			[
+				"Mono",
+				"MonoBehaviour"
+			],
+			[
+				"n",
+				"NUMBER_OF_ARRAY_ELEMENTS_NEEDED"
+			],
+			[
+				"prin",
+				"printCommonElements"
+			],
+			[
+				"Window",
+				"WindowHandler"
+			],
+			[
+				"IN",
+				"Instance"
+			],
+			[
+				"lp",
+				"lpszClassName"
+			],
+			[
+				"W",
+				"WindowClass"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"bit",
+				"bitStore"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "/* Unity Cheat Sheet and Quick Reference 2018\n*  Original Authors: Jeff Fisher & Brian Moakley\n*  Retrieved From:https://www.raywenderlich.com/227-unity-cheat-sheet-and-quick-reference-2018\n*  Date: March 06 2019\n*/  \nMonobehaviour \nprivate void Awake() { /* Called when the script is being loaded */ }\nprivate void OnEnable() { /* Called every time the object is enabled */ }\nprivate void Start() { /* Called on the frame when the script is enabled */ }\nprivate void Update() { /* Called once per frame */ }\nprivate void LateUpdate() { /* Called every frame after Update */ }\nprivate void OnBecameVisible() { /* Called when the renderer is visible by any Camera */ }\nprivate void OnBecameInvisible() { /* Called when the renderer is no longer visible by any Camera */ }\nprivate void OnDrawGizmos() { /* Allows you to draw Gizmos in the Scene View */ }\nprivate void OnGUI() { /* Called multiple times per frame in response to GUI events */ }\nprivate void OnApplicationPause() { /* Called at the end of a frame when a pause is detected */ }\nprivate void OnDisable() { /* Called every time the object is disabled */ }\nprivate void OnDestroy() { /* Only called on previously active GameObjects that have been destroyed */ }\n\nprivate void FixedUpdate() { /* Called every Fixed Timestep */ }\n\n/* Create a GameObject */\nInstantiate(GameObject prefab);\nInstantiate(GameObject prefab, Transform parent);\nInstantiate(GameObject prefab, Vector3 position, Quaternion rotation);\n/* In Practice */\nInstantiate(bullet);\nInstantiate(bullet, bulletSpawn.transform);\nInstantiate(bullet, Vector3.zero, Quaternion.identity);\nInstantiate(bullet, new Vector3(0, 0, 10), bullet.transform.rotation);\n\n/* Destroy a GameObject */\nDestroy(gameObject);\n\n/* Finding GameObjects */\nGameObject myObj = GameObject.Find(\"NAME IN HIERARCHY\");\nGameObject myObj = GameObject.FindWithTag(\"TAG\");\n\n/* Accessing Components */\nExample myComponent = GetComponent<Example>();\nAudioSource audioSource = GetComponent<AudioSource>();\nRigidbody rgbd = GetComponent<Rigidbody>();\n\nVector3.right /* (1, 0, 0) */   Vector2.right /* (1, 0) */\nVector3.left /* (-1, 0, 0) */   Vector2.left /* (-1, 0) */\nVector3.up /* (0, 1, 0) */      Vector2.up /* (0, 1) */\nVector3.down /* (0, -1, 0) */   Vector2.down /* (0, -1) */\nVector3.forward /* (0, 0, 1) */\nVector3.back /* (0, 0, -1) */\nVector3.zero /* (0, 0, 0) */    Vector2.zero /* (0, 0) */\nVector3.one /* (1, 1, 1) */     Vector2.one /* (1, 1) */\nfloat length = myVector.magnitude /* Length of this Vector */\nmyVector.normalized /* Keeps direction, but reduces length to 1 */\n\n/* The time in seconds since the start of the game */\nfloat timeSinceStartOfGame = Time.time;\n\n/* The scale at which the time is passing */\nfloat currentTimeScale = Time.timeScale;\n/* Pause time */\nTime.timeScale = 0;\n\n/* The time in seconds it took to complete the last frame */\n/* Use with Update() and LateUpdate() */\nfloat timePassedSinceLastFrame = Time.deltaTime;\n\n/* The interval in seconds at which physics and fixed frame rate updates are performed */\n/* Use with FixedUpdate() */\nfloat physicsInterval =  Time.fixedDeltaTime;\n\n/* Both objects have to have a Collider and one object has to have a Rigidbody for these Events to work */\nprivate void OnCollisionEnter(Collision hit) { Debug.Log(gameObject.name + \" just hit \" + hit.gameObject.name); }\nprivate void OnCollisionStay(Collision hit) { Debug.Log(gameObject.name + \" is hitting \" + hit.gameObject.name); }\nprivate void OnCollisionExit(Collision hit) { Debug.Log(gameObject.name + \" stopped hitting \" + hit.gameObject.name); }\n\n/* Trigger must be checked on one of the Colliders */\nprivate void OnTriggerEnter(Collider hit) { Debug.Log(gameObject.name + \" just hit \" + hit.name); }\nprivate void OnTriggerStay(Collider hit) { Debug.Log(gameObject.name + \" is hitting \" + hit.name); }\nprivate void OnTriggerExit(Collider hit) { Debug.Log(gameObject.name + \" stopped hitting \" + hit.name); }\n \n/* For 2D Colliders just add 2D to the Method name and the Parameter Type */\nprivate void OnCollisionEnter2D(Collision2D hit) { }\nprivate void OnCollisionStay2D(Collision2D hit) { }\nprivate void OnCollisionExit2D(Collision2D hit) { }\nprivate void OnTriggerEnter2D(Collider2D hit) { }\nprivate void OnTriggerStay2D(Collider2D hit) { }\nprivate void OnTriggerExit2D(Collider2D hit) { }\n\n\n/* Create a Coroutine */\nprivate IEnumerator CountSeconds(int count = 10)\n{\n  for (int i = 0; i <= count; i++) {\n    Debug.Log(i + \" second(s) have passed\");\n    yield return new WaitForSeconds(1.0f);\n  }\n}\n\n/* Call a Coroutine */\nStartCoroutine(CountSeconds());\nStartCoroutine(CountSeconds(10));\n\n/* Call a Coroutine that may need to be stopped */\nStartCoroutine(\"CountSeconds\");\nStartCoroutine(\"CountSeconds\", 10);\n\n/* Stop a Coroutine */\nStopCoroutine(\"CountSeconds\");\nStopAllCoroutines();\n\n/* Store and call a Coroutine from a variable */\nprivate IEnumerator countSecondsCoroutine;\n\ncountSecondsCoroutine = CountSeconds();\nStartCoroutine(countSecondsCoroutine);\n\n/* Stop a stored Coroutine */\nStopCoroutine(countSecondsCoroutine);\n\n/* Coroutine Return Types */\nyield return null; // Waits until the next Update() call\nyield return new WaitForFixedUpdate(); // Waits until the next FixedUpdate() call\nyield return new WaitForEndOfFrame(); // Waits until everything this frame has executed\nyield return new WaitForSeconds(float seconds); // Waits for game time in seconds\nyield return new WaitUntil(() => MY_CONDITION); // Waits until a custom condition is met\nyield return new WWW(\"MY/WEB/REQUEST\"); // Waits for a web request\nyield return StartCoroutine(\"MY_COROUTINE\"); // Waits until another Coroutine is completed\n\nif (Input.GetKeyDown(KeyCode.Space)) { Debug.Log(\"Space key was Pressed\"); }\nif (Input.GetKeyUp(KeyCode.W)) { Debug.Log(\"W key was Released\"); }\nif (Input.GetKey(KeyCode.UpArrow)) { Debug.Log(\"Up Arrow key is being held down\"); }\n\n/* Button Input located under Edit >> Project Settings >> Input */\nif (Input.GetButtonDown(\"ButtonName\")) { Debug.Log(\"Button was pressed\"); }\nif (Input.GetButtonUp(\"ButtonName\")) { Debug.Log(\"Button was released\"); }\nif (Input.GetButton(\"ButtonName\")) { Debug.Log(\"Button is being held down\"); }\n\n\n\n\n\nReload  Scene:\n\nSceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);\n",
+			"file": "/C/Users/Schmoozer/Desktop/Unity Quick Reference.cs",
+			"file_size": 6383,
+			"file_write_time": 131973700393201298,
+			"settings":
+			{
+				"buffer_size": 6253,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/_Scripts/CaptainController.cs",
+			"settings":
+			{
+				"buffer_size": 482,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 86.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"toggle menu",
+				"View: Toggle Menu"
+			],
+			[
+				"toggle side ",
+				"View: Toggle Side Bar"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"syntax c",
+				"Set Syntax: C#"
+			],
+			[
+				"snytac c",
+				"Set Syntax: C++"
+			],
+			[
+				"TOGGLEM",
+				"View: Toggle Menu"
+			],
+			[
+				"snytax c",
+				"Set Syntax: C"
+			],
+			[
+				"syn mi",
+				"Set Syntax: MIPS"
+			],
+			[
+				"toggle side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"set synta",
+				"Set Syntax: C"
+			],
+			[
+				"package control",
+				"Package Control: Remove Package"
+			],
+			[
+				"side bar",
+				"View: Toggle Side Bar"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"TOGGLE MENU",
+				"View: Toggle Menu"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"sysntax java",
+				"Set Syntax: Java"
+			],
+			[
+				"set syntax c",
+				"Set Syntax: C"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"set syntax javascrip",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"set syntax java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"syn",
+				"Set Syntax: Java"
+			],
+			[
+				"Package Control: enable ",
+				"Package Control: Enable Package"
+			],
+			[
+				"package",
+				"Package Control: Disable Package"
+			],
+			[
+				"set syntax c+",
+				"Set Syntax: C++"
+			],
+			[
+				"t",
+				"View: Toggle Menu"
+			],
+			[
+				"toggle sid",
+				"View: Toggle Side Bar"
+			],
+			[
+				"settings ",
+				"Preferences: Settings"
+			],
+			[
+				"",
+				"About"
+			],
+			[
+				"settings",
+				"Preferences: Settings"
+			],
+			[
+				"set syn",
+				"Set Syntax: C++"
+			],
+			[
+				"package control remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"toggle",
+				"View: Toggle Side Bar"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"toggel side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"prefer",
+				"Preferences: Settings - User"
+			],
+			[
+				"user",
+				"Preferences: Settings - User"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"toggle meu",
+				"View: Toggle Menu"
+			],
+			[
+				"view ",
+				"View: Toggle Menu"
+			],
+			[
+				"view toggl",
+				"View: Toggle Menu"
+			],
+			[
+				"vrp",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"synta",
+				"Set Syntax: Java"
+			],
+			[
+				"toggle ",
+				"View: Toggle Tabs"
+			],
+			[
+				"prv",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"view toggle",
+				"View: Toggle Menu"
+			],
+			[
+				"view",
+				"View: Toggle Menu"
+			],
+			[
+				"toggle tabs",
+				"View: Toggle Tabs"
+			],
+			[
+				"toggle ta",
+				"View: Toggle Tabs"
+			],
+			[
+				"view menu",
+				"View: Toggle Menu"
+			],
+			[
+				"open",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"view togg",
+				"View: Toggle Menu"
+			],
+			[
+				"view g",
+				"View: Toggle Menu"
+			],
+			[
+				"view me",
+				"View: Toggle Menu"
+			],
+			[
+				"view toggle menu",
+				"View: Toggle Menu"
+			],
+			[
+				"syntax java",
+				"Set Syntax: Java"
+			],
+			[
+				"INSTALL",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"setting",
+				"Preferences: Settings - User"
+			],
+			[
+				"remov",
+				"Package Control: Remove Repository"
+			],
+			[
+				"prefere",
+				"Preferences: Settings - User"
+			],
+			[
+				"set plain",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"set syntax r",
+				"Set Syntax: R Console"
+			],
+			[
+				"view toggle side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"view to",
+				"View: Toggle Menu"
+			],
+			[
+				"vire ",
+				"View: Toggle Side Bar"
+			],
+			[
+				"side ",
+				"View: Toggle Side Bar"
+			],
+			[
+				" ",
+				"About"
+			],
+			[
+				"package control ",
+				"Package Control: Install Package"
+			],
+			[
+				"view toggle t",
+				"View: Toggle Tabs"
+			],
+			[
+				"toggle men",
+				"View: Toggle Menu"
+			],
+			[
+				"view toggle tabs",
+				"View: Toggle Tabs"
+			],
+			[
+				"view t",
+				"View: Toggle Menu"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"SETTINGS",
+				"Preferences: Settings - User"
+			],
+			[
+				"SETTINGS ",
+				"Preferences: Settings - User"
+			],
+			[
+				"SETTIGNS",
+				"Preferences: Settings - User"
+			],
+			[
+				"View: toggle Menu",
+				"View: Toggle Menu"
+			],
+			[
+				"view: Toggle Menu",
+				"View: Toggle Menu"
+			]
+		],
+		"width": 442.0
+	},
+	"console":
+	{
+		"height": 144.0,
+		"history":
+		[
+			"os.system('dir')",
+			"import os",
+			"ls",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"help",
+			"?",
+			"kl",
+			"wordcount",
+			"cls",
+			"wordcount",
+			"wordCount",
+			"wordcount",
+			"tocaps",
+			"prv",
+			"shell_cmd build",
+			"shell_cmd",
+			"cmd: build",
+			"dir",
+			"build",
+			"view.encoding()",
+			"view.encoding();",
+			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"cmd cmd",
+			"compile",
+			"test",
+			"cmd",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Drive/Classes/CS390AP/Seafarers"
+	],
+	"file_history":
+	[
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/LowPolyWater_Pack/Scripts/LowPolyWater.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/_Res/DepthMask.shader",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/Example/NVRExampleLeverResultRocket.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRInteractables.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/_Res/NewSurfaceShader.shader",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/LowPolyWater_Pack/Shaders/WaterShaded.shader",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRSwitch.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRButton.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRAttachPoint.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRAttachJoint.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRInteractable.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRHand.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRSlider.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRLever.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRInteractableItemClippable.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRInputDevice.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRButtons.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRPlayer.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/Example/NVRExampleGrower.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/CollisionSoundFramework/NVRCollisionSoundController.cs",
+		"/C/Users/Schmoozer/Desktop/TODO.ME",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/Example/NVRExampleEvent.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRInteractableItem.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/Oculus/NVROculusIntegration.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/Example/NVRExampleColorSlider.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Library/PackageCache/com.unity.postprocessing@2.1.4/PostProcessing/Shaders/Builtins/Bloom.shader",
+		"/C/Users/Schmoozer/Desktop/Unity Quick Reference.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/scripts/CaptainController.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/_Scripts/SetRenderQueue.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/_Materials/NewSurfaceShader.shader",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/Example/NVRExampleButtonResetScene.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/Oculus/SampleFramework/Usage/Locomotion/Scripts/CharacterCapsule.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRHead.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/scripts/HandController.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/NewtonVR/NVRCanvasInput.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/Oculus/VR/Scripts/Util/OVRSceneSampleController.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/Oculus/VR/Scripts/Util/OVRPlayerController.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/HandController.cs",
+		"/D/Drive/game design notes",
+		"/C/Users/SCHMOO~1/AppData/Local/Temp/c3a72e921c4e6654783ccb7fcee6728e/Assets/3DGamekit/Packages/SceneManagement/Runtime/CharacterStateSetter.cs",
+		"/C/Users/SCHMOO~1/AppData/Local/Temp/c3a72e921c4e6654783ccb7fcee6728e/Assets/3DGamekit/Scripts/Game/Weapon/TimeEffect.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers - Term Project/Assets/enum_devices.cs",
+		"/C/Users/SCHMOO~1/AppData/Local/Temp/c3a72e921c4e6654783ccb7fcee6728e/Assets/3DGamekit/Packages/Skybox3D/Runtime/Skybox3D.cs",
+		"/D/Drive/Classes/CS390AP/Unity Notes",
+		"/D/Drive/Classes/CS390AP/Seafarers/Temp/Compiled-Unlit-Crosshair.shader",
+		"/D/Drive/Classes/CS390AP/Seafarers/Temp/GeneratedFixedFunction-Oculus-Unlit Transparent Color.shader",
+		"/D/Drive/Classes/CS390AP/Seafarers/Library/PackageCache/com.unity.xr.oculus.standalone@1.29.1/README.md",
+		"/D/Drive/Classes/CS390AP/Seafarers/Library/PackageCache/com.unity.xr.oculus.standalone@1.29.1/Documentation/Oculus.md",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/Oculus/Platform/Samples/VrHoops/Readme.md",
+		"/D/Drive/Classes/CS390AP/Seafarers/Library/PackageCache/com.unity.xr.oculus.standalone@1.29.1/AudioPluginOculusSpatializerLICENSE.md",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/Oculus/VR/Scripts/Util/OVRGazePointer.cs",
+		"/D/Drive/Classes/CS390AP/Seafarers/Assets/Oculus/Platform/Samples/VrHoops/Scripts/P2PNetworkGoal.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/Scripts/spawner.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/Scripts/Beets.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/Scripts/ScoreKeeper.cs",
+		"/C/Users/Schmoozer/Desktop/DoorOpener.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/Oculus/VoiceMod/Scripts/OVRVoiceMod.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/Scripts/enum_devices.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/enum_devices.cs",
+		"/C/Users/Schmoozer/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.postprocessing@2.1.3/PostProcessing/Shaders/Builtins/DepthOfField.shader",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/ScoreKeeper.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/Oculus/VR/Scripts/Util/OVRPlayerController.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/Scripts/HandController.cs",
+		"/D/Drive/Classes/Previous Classes/CS207/Project/Final Writeup.tex",
+		"/C/Users/Schmoozer/Documents/GitHub/CS207-FMSynth/src/GenSynth.ino",
+		"/D/Drive/Classes/CS390AP/Proposal.tex",
+		"/D/Drive/Classes/CS390AP/titlepage.tex",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/BeetSaber/Assets/Scripts/SaberHand.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/Assets/Oculus/VR/Scripts/Util/OVRGridCube.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/Assets/Oculus/Avatar/Scripts/OvrAvatarHand.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/Assets/Oculus/VR/Scripts/OVRManager.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/Assets/Oculus/Platform/Samples/VrHoops/Readme.md",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/Assets/Oculus/VR/Scripts/OVRInput.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/Assets/Oculus/VR/Scripts/Util/OVRGrabber.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/Assets/PostProcessing/Editor/Utils/CurveEditor.cs",
+		"/D/Drive/Classes/CS390AP/Beet Saber/Beet Saber/Assets/Oculus/VR/Editor/OVREngineConfigurationUpdater.cs",
+		"/D/Drive/Classes/PSP Essay/writeup.tex",
+		"/C/Users/Schmoozer/AppData/Local/Temp/CS207LFinal__setup.ino",
+		"/C/Users/Schmoozer/AppData/Local/Temp/LabTestv3B.ino",
+		"/D/Projects/PSPMIPS/src/Makefile",
+		"/D/Projects/PSPMIPS/src/mipsdemo.c",
+		"/D/Projects/PSPMIPS/src/inputdemo.c",
+		"/D/Projects/PSPMIPS/src/testroutine.S",
+		"/D/Projects/PSPMIPS/src/SCRATCH",
+		"/D/Drive/Classes/CS201/MIPS Shit.s",
+		"/D/Projects/PSPMIPS/src/pspsdknotes.c",
+		"/C/Users/Schmoozer/Desktop/test2.S",
+		"/D/Drive/Classes/PSP/writeup.tex",
+		"/C/pspsdk/psp/sdk/samples/controller/basic/main.c",
+		"/C/Users/Schmoozer/AppData/Local/Temp/A5Q36054.s",
+		"/D/Drive/Classes/CS201/Boilerplate.s",
+		"/D/Projects/PSPMIPS/src/tRoutine.S",
+		"/C/pspsdk/psp/lib/crt0.o",
+		"/C/pspsdk/psp/sdk/samples/controller/basic/Makefile",
+		"/C/pspsdk/psp/sdk/samples/ms/callback/main.c",
+		"/D/Drive/Classes/CS201/MIPS boilerplate-slim.s",
+		"/C/pspsdk/psp/sample/script.lua",
+		"/C/pspsdk/psp/sdk/lib/build.mak",
+		"/C/Users/Schmoozer/AppData/Local/Temp/Temp1_3dcube.zip/luaplayer/script.lua",
+		"/C/Users/Schmoozer/Desktop/a.c",
+		"/C/pspsdk/psp/sdk/samples/gu/cube/cube.c",
+		"/C/pspsdk/psp/sample/main.c",
+		"/C/pspsdk/psp/sdk/samples/pspmath/main.c",
+		"/C/Users/Schmoozer/Desktop/Cartridge-master/converter/vgm_to_arduino.py",
+		"/C/Users/Schmoozer/Desktop/a.dmf",
+		"/C/Users/Schmoozer/Desktop/sigflup-z80-vgm-player-be8df85.tar/sigflup-z80-vgm-player-be8df85/prog.c",
+		"/C/Users/Schmoozer/Desktop/sigflup-z80-vgm-player-be8df85.tar/sigflup-z80-vgm-player-be8df85/vgm2zgm/main.c",
+		"/D/Drive/Classes/CS207/Project/Sonic the Hedgehog 3 vgm set/Sonic the Hedgehog 3/01 - Title Screen/01 - Title Screen",
+		"/D/Drive/Classes/CS201/Assignments/A6/A6Q200396054.s",
+		"/D/Drive/Classes/CS201/Labs/la10/loop1.s",
+		"/D/Drive/Classes/CS201/Labs/la9/num-vowel.s",
+		"/D/Drive/Classes/CS201/Labs/la10/loop2.s",
+		"/D/Drive/Classes/CS201/Assignments/A6/InsertionSort.java",
+		"/C/Users/Schmoozer/AppData/Local/Temp/LabTestTemplate1.ino",
+		"/D/Drive/Classes/CS201/Assignments/A5/A5Q36054.s",
+		"/D/Drive/Classes/CS201/Labs/la8/equation.s",
+		"/D/Drive/Classes/CS201/Labs/la9/la9.asm",
+		"/D/Drive/Classes/CS201/Labs/la8/convertF2C.s",
+		"/D/Drive/Classes/CS201/mips syscalls.s",
+		"/C/pspsdk/psp/sdk/samples/gu/blit/blit.c",
+		"/C/pspsdk/psp/sdk/samples/gu/lights/lights.c",
+		"/C/Users/Schmoozer/Desktop/main.tex",
+		"/C/Users/Schmoozer/Desktop/start.bat",
+		"/C/pspsdk/psp/sdk/samples/wlan/main.c",
+		"/C/pspsdk/psp/sdk/samples/template/elf_template/Makefile",
+		"/C/pspsdk/psp/sdk/samples/template/elf_template/main.c",
+		"/C/pspsdk/psp/sdk/samples/kernel/messagebox/main.c",
+		"/D/Drive/Classes/CS201/Labs/la8/Peter.s"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 97.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Schmoozer/Desktop/Unity Quick Reference.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								403,
+								452
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"side_bar_folders_auto_load_folder": 1,
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1782.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/_Scripts/CaptainController.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 482,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 0,
+								"count": 22,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"side_bar_folders_auto_load_folder": 1,
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 37.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 651.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/luaLOVE.sublime-build",
+	"project": "seafarer.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"Project 1: Raycaster in java. Impliment basic game"
+			],
+			[
+				"solidblock",
+				"Prelude-of-the-Chambered-master\\src\\com\\mojang\\escape\\level\\block\\SolidBlock.java"
+			],
+			[
+				"q1",
+				"Q1.cpp"
+			],
+			[
+				"q",
+				"Q5.cpp"
+			],
+			[
+				"q4",
+				"Q4.cpp"
+			],
+			[
+				"q3",
+				"Q3.cpp"
+			],
+			[
+				"q2",
+				"Q2.cpp"
+			],
+			[
+				"q2.cpp",
+				"Q2.cpp"
+			],
+			[
+				"c",
+				"C:\\Users\\Schmoozer\\Development\\Documents\\Resumes\\cotycover.tex"
+			],
+			[
+				"unti",
+				"untitled"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 62.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 578.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 220.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
